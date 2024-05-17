@@ -12,7 +12,8 @@ export const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD,
     dialectOptions: {
         ssl: {
-          require: true
+          require: true,
+          rejectUnauthorized: false
         }
       },
       define: {
