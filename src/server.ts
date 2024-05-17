@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(router);
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
     sequelize.authenticate().then(() => {

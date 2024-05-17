@@ -10,7 +10,13 @@ export const sequelize = new Sequelize({
     database: process.env.DB_NAME || "smart_api",
     username: process.env.DB_USERNAME || "smart_api",
     password: process.env.DB_PASSWORD || "1234",
-    define: {
+    dialectOptions: {
+        ssl: {
+          require: true
+        }
+      },
+      define: {
         underscored: true
-    }
-});
+      },
+      logging: false
+ })
