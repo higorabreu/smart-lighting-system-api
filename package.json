@@ -10,7 +10,7 @@
     "seed": "sequelize db:seed:all",
     "wait": "echo Waiting for 20 seconds... && sleep 20",
     "migrate-and-seed": "npm run migrate && npm run seed",
-    "dev-with-migrate-and-seed": "npm run wait && npm run migrate-and-seed && npm run dev"
+    "dev-with-migrate-and-seed": "npm run dev && npm run wait && npm run migrate-and-seed"
   },
   
   "keywords": [],
