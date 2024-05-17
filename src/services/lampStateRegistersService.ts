@@ -27,14 +27,8 @@ export const lampStateRegistersService = {
 
         let totalOnTime = 0;
 
-        last24HoursRecords.forEach((record, index) => {
-            if (record.state) {
-                if (index < last24HoursRecords.length - 1) {
-                    const nextRecord = last24HoursRecords[index + 1];
-                    const duration = (nextRecord.timestamp.getTime() - record.timestamp.getTime()) / 1000;
-                    totalOnTime += duration;
-                }
-            }
+        last24HoursRecords.forEach(record => {
+            totalOnTime += 30;
         });
 
         return totalOnTime;
@@ -45,28 +39,21 @@ export const lampStateRegistersService = {
 
   async calculateMonthlyConsumption() {
     try {
-        const allRecords = await LampStateRegisters.findAll();
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-        let totalConsumption = 0;
-        let totalOnTimeSeconds = 0;
-        let previousTimestamp: Date | null = null;
-
-        allRecords.forEach(record => {
-            if (record.state) {
-                if (previousTimestamp) {
-                  const durationSeconds = (record.timestamp.getTime() - previousTimestamp!.getTime()) / 1000;
-                    totalOnTimeSeconds += durationSeconds;
+        const lastThirtyDaysRecords = await LampStateRegisters.findAll({
+            where: {
+                timestamp: {
+                    [Op.gt]: thirtyDaysAgo
                 }
-                previousTimestamp = record.timestamp;
             }
         });
 
-        totalConsumption = (12 / 1000) * (totalOnTimeSeconds / 3600);
+        const totalOnTimeSeconds = lastThirtyDaysRecords.length * 30;
 
-        const daysInMonth = 30;
-        const monthlyAverageConsumption = totalConsumption / daysInMonth;
+        const monthlyAverageConsumption = (12 / 1000) * (totalOnTimeSeconds / 3600);
 
-        // Considerando a tarifa padrão de R$ 0,59296 por kWh
         const defaultTariffRate = 0.59296;
         const monthlyCost = monthlyAverageConsumption * defaultTariffRate;
 
