@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
-    "dev-with-migrate-and-seed": "npm run migrate && npm run seed && npm run dev"
+    "wait": "echo Waiting for 20 seconds... && sleep 20",
+    "migrate-and-seed": "npm run migrate && npm run seed",
+    "dev-with-migrate-and-seed": "npm run wait && npm run migrate-and-seed && npm run dev"
   },
   
   "keywords": [],
