@@ -5,11 +5,11 @@ dotenv.config();
 
 export const sequelize = new Sequelize({
     dialect: "postgres",
-    host: process.env.DB_HOST || "localhost",
-    port: Number(process.env.DB_PORT) || 5432,
-    database: process.env.DB_NAME || "smart_api",
-    username: process.env.DB_USERNAME || "smart_api",
-    password: process.env.DB_PASSWORD || "1234",
+    host: process.env.DB_HOST,
+    port: 5432,
+    database: process.env.DB_NAME,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
     dialectOptions: {
         ssl: {
           require: true
