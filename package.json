@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch  node_modules src/server.ts"
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all",
+    "dev-with-migrate-and-seed": "npm run migrate && npm run seed && npm run dev"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
