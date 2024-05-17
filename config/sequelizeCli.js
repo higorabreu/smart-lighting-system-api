@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 module.exports = {
   development: {
-      dialect: 'postgres',
-      host: 'localhost',
-      port: '5432',
-      database: 'smart_api',
-      username: 'smart_api',
-      password: '1234'
+    dialect: 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    port: process.env.DB_PORT || '5432',
+    database: process.env.DB_NAME || 'smart_api',
+    username: process.env.DB_USERNAME || 'smart_api',
+    password: process.env.DB_PASSWORD || '1234'
   }
-}
+};
