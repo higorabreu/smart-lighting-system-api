@@ -3,8 +3,8 @@ module.exports = {
       dialect: 'postgres',
       host: 'localhost',
       port: '5432',
-      database: 'smart-lighting',
-      username: 'postgres',
-      password: 'postgres'
+      database: 'smart_api',
+      username: 'smart_api',
+      password: '1234'
   }
 }
