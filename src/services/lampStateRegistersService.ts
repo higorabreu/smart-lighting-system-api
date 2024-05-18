@@ -6,7 +6,7 @@ export const lampStateRegistersService = {
   async getAllRegisters() {
     try {
         const allRegisters = await LampStateRegisters.findAll({
-            attributes: ['state', 'timestamp']
+            attributes: ['id','state', 'timestamp']
         });
         return allRegisters;
     } catch (error) {
