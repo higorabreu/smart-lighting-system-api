@@ -5,11 +5,7 @@
   "main": "index.js",
 
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "migrate": "npx sequelize-cli db:migrate",
-    "seed": "npx sequelize-cli db:seed:all",
-    "migrate-and-seed": "npm run migrate && npm run seed",
-    "dev-with-migrate-and-seed": "npm run dev && npm run migrate-and-seed"
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
   },
   
   "keywords": [],
